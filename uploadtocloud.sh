@@ -9,6 +9,8 @@ filepath=$(echo "$filepath" | sed 's/(/\\(/g')
 filepath=$(echo "$filepath" | sed 's/\]/\\\]/g')
 filepath=$(echo "$filepath" | sed 's/\[/\\\[/g')
 filepath=$(echo "$filepath" | sed 's/\&/\\&/g')
+filepath=$(echo "$filepath" | sed 's/|/\\|/g')
+filepath=$(echo "$filepath" | sed "s/'/\\\'/g")
 echo $filepath
-eval "curl -u user:password -T $filepath https://nextcloud.example.com/remote.php/dav/files/$user/path/where/you/want/to/save"
+eval "curl -g -u user:password -T $filepath https://nextcloud.example.com/remote.php/dav/files/$user/path/where/you/want/to/save"
 eval "rm $PWD/$filepath"
